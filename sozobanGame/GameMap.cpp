@@ -98,15 +98,15 @@ void CGameMap::draw()
 		}
 }
 // max´Â ÃÑ AIÀÇ °¹¼ö
-void CGameMap::crash(AICharacter** AIs, int max)
+void CGameMap::crash(AICharacter* AIs)
 {
 	int cursorX = m_cursor->getX();
 	int cursorY = m_cursor->getY();
 
-	for (int i = 0; i < max; i++)
+	for (int i = 0; i < AI_num; i++)
 	{
-		int x = AIs[i]->getCurXY().x;
-		int y = AIs[i]->getCurXY().y;
+		int x = AIs[i].getCurXY().x;
+		int y = AIs[i].getCurXY().y;
 		//cout << "x = " << x << " / " << "y = " << y << endl;
 		
 		if (cursorX == x && cursorY == y)
@@ -118,10 +118,10 @@ void CGameMap::crash(AICharacter** AIs, int max)
 			}
 			else {
 						// ÀÚ»ì
-						AIs[i]->suicide();
+						AIs[i].suicide();
 						setElement(x, y, BLANK);
 						m_cursor->EatAIPluse();
-						isVictory(max);
+						isVictory();
 			}
 		}
 	}
@@ -129,10 +129,10 @@ void CGameMap::crash(AICharacter** AIs, int max)
 
 }
 
-bool CGameMap::isVictory(int AI_Amount)
+bool CGameMap::isVictory()
 {
 	//cout << m_cursor->getEatAI() << "½Â¸®" << endl;
-	if (m_cursor->getEatAI() >= AI_Amount)
+	if (m_cursor->getEatAI() >= AI_num)
 	{
 		cout << "½Â¸®" << endl;
 	//	TerminateThread()

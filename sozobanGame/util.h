@@ -7,6 +7,7 @@
 #define DOWN	80
 #define SPACE	32
 #define POWERFULL 10
+#define AI_num 4
 
 enum {BLANK, TARGET, OBJECT, AI};
 void gotoxy(int x, int y);

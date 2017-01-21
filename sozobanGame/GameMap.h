@@ -31,9 +31,9 @@ public:
 	int getElement(int x, int y){ return m_gameMap[y][x]; }
 	void setElement(int x, int y, int val){ m_gameMap[y][x] = val; }
 	void draw();
-	void crash(AICharacter** AIs, int max);
+	void crash(AICharacter* AIs);
 	CMyCursor* getCursor(){ return m_cursor; }
 	//CItemList* getItem(){ return m_item; }
-	bool isVictory(int AI_Amount);
+	bool isVictory();
 };
 
