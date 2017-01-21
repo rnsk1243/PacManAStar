@@ -81,7 +81,7 @@ void CGameMap::initMap()
 
 void CGameMap::draw()
 {
-	char* tileImg[] = { " ", "·", "▩", " " };
+	char* tileImg[] = { " ", "·", "▩" };
 	for (int y = 0; y < m_height; y++)
 		for (int x = 0; x < m_width; x++)
 		{
@@ -100,42 +100,32 @@ void CGameMap::draw()
 // max는 총 AI의 갯수
 void CGameMap::crash(AICharacter** AIs, int max)
 {
+	int cursorX = m_cursor->getX();
+	int cursorY = m_cursor->getY();
+
 	for (int i = 0; i < max; i++)
 	{
 		int x = AIs[i]->getCurXY().x;
 		int y = AIs[i]->getCurXY().y;
 		//cout << "x = " << x << " / " << "y = " << y << endl;
-		if (getElement(x, y) == BLANK)
-		{
-			setElement(x, y, AI);
-		}
 		
-	}
-	int cursorX = m_cursor->getX();
-	int cursorY = m_cursor->getY();
-	if (getElement(cursorX, cursorY) == AI)
-	{
-		if (!m_cursor->isPowerFull())
+		if (cursorX == x && cursorY == y)
 		{
-			cout << "패배..." << endl;
-			exit(0);
-		} 
-		else {
-			for (int i = 0; i < max; i++)
+			if (!m_cursor->isPowerFull())
 			{
-				int x = AIs[i]->getCurXY().x;
-				int y = AIs[i]->getCurXY().y;
-				if (x == cursorX && y == cursorY)
-				{
-					// 자살
-					AIs[i]->suicide();
-					setElement(x, y, BLANK);
-					m_cursor->EatAIPluse();
-					isVictory(max);
-				}
+				cout << "패배..." << endl;
+				exit(0);
+			}
+			else {
+						// 자살
+						AIs[i]->suicide();
+						setElement(x, y, BLANK);
+						m_cursor->EatAIPluse();
+						isVictory(max);
 			}
 		}
 	}
+
 
 }
 
