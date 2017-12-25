@@ -17,7 +17,7 @@ struct ARGS
 	// 만약 &을 붙여주지 않으면 프로그램이 죽지는 않으나 내가 원하는 update메소드가 호출되지 않음
 	AICharacter* AI;
 	ARGS() {
-		AI = new AICharacter;
+	//	AI = new AICharacter;
 	}
 	// 다양한 상태들의 부모 클래스를 선언하여 이 클래스를 상속받은 모든 클래스의 update메소드를 호출 할 수 있음
 	//CHeroineState* state; // state를 정적변수로 바꾸면서 더이상 필요가 없어졌다.
@@ -120,8 +120,7 @@ void main()
 				if (cursorX - 1 >= 1)
 				{
 					gameMap->getCursor()->goLeft();
-					int curX = gameMap->getCursor()->getX();
-					int curY = gameMap->getCursor()->getY();
+
 					
 				}
 				break;
@@ -129,8 +128,7 @@ void main()
 				if (cursorX + 1 <= mapWidth - 2)
 				{
 					gameMap->getCursor()->goRight();
-					int curX = gameMap->getCursor()->getX();
-					int curY = gameMap->getCursor()->getY();
+
 					
 				}
 				break;
@@ -138,8 +136,7 @@ void main()
 				if (cursorY - 1 >= 1)
 				{
 					gameMap->getCursor()->goUp();
-					int curX = gameMap->getCursor()->getX();
-					int curY = gameMap->getCursor()->getY();
+
 					
 				}
 				break;
@@ -147,8 +144,7 @@ void main()
 				if (cursorY + 1 <= mapHeight - 2)
 				{
 					gameMap->getCursor()->goDown();
-					int curX = gameMap->getCursor()->getX();
-					int curY = gameMap->getCursor()->getY();
+		
 					
 				}
 				break;
